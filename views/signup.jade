@@ -1,0 +1,27 @@
+extends layout
+
+block content
+    h1 #{title}
+    p Welcome to #{title}
+    div
+        //- Add javascript to check on client side if the data is correct.
+        form(action='/signup',method='post')
+            div(data-role='fieldcontain')
+                fieldset(data-role='controlgroup')
+                    label(for='username') #{tr("Username")}
+                        input(id='username',type='text',value='',name='username')
+            p #{tr("Username must be at least 4 characters long")}
+            div(data-role='fieldcontain')
+                fieldset(data-role='controlgroup')
+                    label(for='email') #{tr("Email")}
+                        input(id='email',type='text',value='',placeholder='@',name='email')
+            div#passworddiv(data-role='fieldcontain')
+                fieldset(data-role='controlgroup')
+                    label(for='password') #{tr("Password")}
+                        input(id='password',type='password',value='',placeholder='',name='password')
+            div(id='hiddendiv',data-role='fieldcontain')
+                fieldset(data-role='controlgroup')
+                    label(for='hidden_password') #{tr("Repeat Password")}
+                        input(id='hidden_password',type='password',value='',placeholder='',name='password2')
+            div(data-role='fieldcontain')
+                input(type='submit',value=tr("Sign Up"),data-transition='fade', data-theme='c')

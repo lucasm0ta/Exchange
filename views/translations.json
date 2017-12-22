@@ -1,0 +1,36 @@
+{
+  "The two password fields must be filled": {
+    "pt": "Os dois campos de senha devem estar preenchidos",
+    "es": ""
+  },
+  "Username must be at least 4 characters long": {
+    "pt": "Apelido deve ter pelo menos 4 caracteres",
+    "es": ""
+  },
+  "Password": {
+    "pt": "Senha",
+    "es": ""
+  },
+  "Repeat Password": {
+    "pt": "Repita a senha",
+    "es": ""
+  },
+  "Email":{
+    "pt": "Email",
+    "es": ""
+  },
+  "Username":{
+    "pt": "Usuário",
+    "es": ""
+  },
+  "Sign Up": {
+    "pt": "Cadastrar",
+    "es": ""
+  },
+  "en": {
+    "pt": "pt",
+    "es": "es"
+  }
+
+
+}
