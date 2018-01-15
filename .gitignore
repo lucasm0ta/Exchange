@@ -1,6 +1,9 @@
+# Webstorm files
 .idea
 
+# Node temp files
 node_modules
+package-lock.json
 
 # File from MySQL Workbench
 *.bak

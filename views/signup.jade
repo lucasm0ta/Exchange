@@ -1,20 +1,28 @@
 extends layout
-
+- var has_error = (error) ? true : false;
 block content
     h1 #{title}
     p Welcome to #{title}
     div
-        //- Add javascript to check on client side if the data is correct.
+        // TODO: Add javascript to check on client side if the data is correct. Issue #8
         form(action='/signup',method='post')
             div(data-role='fieldcontain')
                 fieldset(data-role='controlgroup')
-                    label(for='username') #{tr("Username")}
-                        input(id='username',type='text',value='',name='username')
-            p #{tr("Username must be at least 4 characters long")}
-            div(data-role='fieldcontain')
-                fieldset(data-role='controlgroup')
                     label(for='email') #{tr("Email")}
-                        input(id='email',type='text',value='',placeholder='@',name='email')
+                        input(id='email', type='text', value='', placeholder='@',name='email')
+                        - if (has_error) {
+                        // TODO: Find a way to show the error messages. The code bellow is not parsed.
+                        // -   switch (error.email){
+                        // -   case 0:
+                        // -   break;
+                        // -   case 1:
+                        //p #{tr("Insert an email.")}
+                        // -   break;
+                        // -   case 2:
+                        //p #{tr("Insert a valid email.")}
+                        // -   break;
+                        // -   }
+                        -}
             div#passworddiv(data-role='fieldcontain')
                 fieldset(data-role='controlgroup')
                     label(for='password') #{tr("Password")}

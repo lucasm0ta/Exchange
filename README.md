@@ -5,6 +5,21 @@ Node.Js Exchange
   
   * express
   * express-session
+  * jade
+  * pg
+  * localize
+  * serve-favicon
+  * body-parser
+  * compression
+  * cookie-parser
+  * debug
+  * less-middleware
+  * morgan
+  * chai
+
+# First Steps
+
+Prepare Database (Read Docs/Database.md)
     
 # Developers
 
