@@ -7,3 +7,6 @@ package-lock.json
 
 # File from MySQL Workbench
 *.bak
+
+# Private Files
+private
