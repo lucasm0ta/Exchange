@@ -3,8 +3,8 @@ var val = require('../utils/validate');
 var sec = require('../utils/security');
 
 const q = {
-    insert : 'INSERT INTO "user" (email, password) VALUES ($1::text, $2::text)',
-    select_by_email : 'SELECT * FROM "user" WHERE email = $1::text',
+    insert : 'INSERT INTO exchange.user (email, password) VALUES ($1::text, $2::text)',
+    select_by_email : 'SELECT * FROM exchange.user WHERE email = $1::text',
     remove : ''
 };
 

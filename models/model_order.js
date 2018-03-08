@@ -4,8 +4,8 @@ var sec = require('../utils/security');
 var m_user = require('./model_user');
 
 const q = {
-    insert : 'INSERT INTO "order" (user_id, datetime, btc_quant, btc_usd, buy) VALUES ($1, $2, $3, $4, $5)',
-    select : 'SELECT * FROM "order" WHERE id_user = $1',
+    insert : 'INSERT INTO exchange.order (user_id, datetime, btc_quant, btc_usd, buy) VALUES ($1, $2, $3, $4, $5)',
+    select : 'SELECT * FROM exchange.order WHERE id_user = $1',
     remove : ''
 };
 
