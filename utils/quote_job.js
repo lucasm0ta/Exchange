@@ -21,7 +21,10 @@ function insertQuote(err, quote) {
     }
 }
 
-var job = new CronJob('* 0,15,30,45 * * * *', () => {
+/**
+ * Insert one quote from 15 to 15 minutes.
+ */
+var job = new CronJob('1 0,15,30,45 * * * *', () => {
     console.log("Inserted Quote");
     helpers.forEach((helper) => {
         helper.get(insertQuote);

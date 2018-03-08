@@ -3,8 +3,8 @@ var val = require('../utils/validate');
 var sec = require('../utils/security');
 
 const q = {
-    insert : 'INSERT INTO "user" (email, password) VALUES ($1, $2)',
-    select : '',
+    insert : 'INSERT INTO "user" (email, password) VALUES ($1::text, $2::text)',
+    select_by_email : 'SELECT * FROM "user" WHERE email = $1::text',
     remove : ''
 };
 
@@ -12,44 +12,65 @@ var user = {};
 /**
  *
  * @param usr A user object containing and email and password.
- * @param cb A call
+ * @param cb A callback function
  */
 user.validateUser = (usr, cb) => {
     var error = ["", ""];
     var r_hash = "";
-    val.validateEmail(usr.email, (err) => {
-        if (err)
-            error[0] = err;
-    });
-    val.validatePassword(usr.password, (err) => {
-        if (err) {
-            error[1] = err;
-            cb(error, r_hash);
+    val.validateEmail(usr.email, (err_e) => {
+        if (err_e) {
+            error[0] = err_e;
         } else {
-            sec.hash(usr.password, (err, hash) => {
-                if (err) {
-                    error[1] = err;
+            val.validatePassword(usr.password, (err_p) => {
+                if (err_p) {
+                    error[1] = err_p;
+                    cb(error);
                 } else {
-                    r_hash = hash;
+                    cb("");
                 }
-                cb(error, r_hash);
+            });
+        }
+
+    });
+};
+
+
+user.getUser = (usr, cb) => {
+    user.validateUser(usr, (errUser) => {
+        if (errUser[0] || errUser[1]) {
+            cb(errUser[0] + ((errUser[0] && errUser[1])?" ":"") + errUser[1]);
+        } else {
+            db.query(q.select_by_email, [usr.email], (err_q, res_q) => {
+                if (err_q) {
+                    cb(err_q);
+                } else {
+                    sec.check(usr.password, res_q.rows[0].password, (err_c, res_c) => {
+                        if (err_c) {
+                            cb(err_c);
+                        } else {
+                            cb("", res_q.rows[0]);
+                        }
+                    });
+                }
             });
         }
     });
 };
 
 user.createUser = (usr, cb) => {
-    user.validateUser(usr, (errUser, hash) => {
+    user.validateUser(usr, (errUser) => {
         if (errUser[0] || errUser[1]) {
-            cb(errUser[0] + " " +errUser[1]);
+            cb(errUser[0] + ((errUser[0] && errUser[1])?" ":"") + errUser[1]);
         } else {
-            db.query(q.insert, [usr.email, hash] , cb);
+            sec.hash(usr.password, (err, hash) => {
+                if (err) {
+                    cb(err);
+                } else {
+                    db.query(q.insert, [usr.email, hash] , cb);
+                }
+            });
         }
     });
-};
-
-user.getUser = (id, callback) => {
-
 };
 
 user.deleteUser = () => {

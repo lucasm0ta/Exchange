@@ -3,27 +3,59 @@ Node.Js Exchange
 
 # Dependency
   
-  * express
-  * express-session
-  * jade
-  * pg
-  * localize
-  * serve-favicon
+  * bcrypt
   * body-parser
+  * chai
   * compression
-  * cookie-parser
+  * cron
   * debug
+  * express
+  * gulp
+  * gulp-minify
+  * isemail
   * less-middleware
   * morgan
-  * chai
+  * pg
+  * poloniex-api-node
 
-# First Steps
+# API
+## Create User
+POST a request to `/users` with the following body structure.
 
-Prepare Database (Read Docs/Database.md)
+    {
+        "email": "email@email.com",
+        "password": "password"
+    }
+
+## Create Order
+POST a request to `/orders` with the following body structure:
+
+    {
+        "email": "email@email.com",
+        "password": "password",
+        "quant" : "12",
+        "value" : "10000.00",
+        "buy" : "true"
+    }
+## Get Quote
+GET a request to `/quotes` and you receve something like:
+
+    {
+        "coin": "BTC",
+        "value": "$9,709.00",
+        "datetime": "2018-03-08T00:45:03.000Z",
+        "exchange": "poloniex",
+        "increase": "-$51.00"
+    }
+# Set Up
+## Database
+Create a PostgreSQL database with the model on `Extras/model.sql` an 
+
+
     
 # Developers
 
-When using, the following environment variables needs to be set for connecting
+When executing, the following environment variables needs to be set for connecting
 to the database as the following example:
     
     PGUSER=dbuser
@@ -32,10 +64,5 @@ to the database as the following example:
     PGDATABASE=exchange
     PGPORT=3211
     
-Run the command `xlocalize -R -l pt -t en,es` on each update of view text to update
-the localization file (`translations.json`).
-
-## Coding Style
-
 ## Documentation
     All code must be documented using JsDoc style.

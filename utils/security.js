@@ -11,11 +11,19 @@ var security = {};
  */
 security.hash = (password, cb) => {
     bcrypt.hash(password, saltRounds, (err, hash) => {
-        if (err){
+        if (err) {
             console.error('Hash error:', err)
         }
         cb(err, hash);
     });
 };
 
+security.check = (password, hash, cb) => {
+    bcrypt.compare(password, hash, (err, res) => {
+        if (err) {
+            console.error('Hash Compare Error: ', err)
+        }
+        cb(err, res);
+    });
+};
 module.exports = security;

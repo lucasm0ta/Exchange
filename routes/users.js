@@ -14,7 +14,12 @@ router.post('/', (req, res, next) => {
         password : req.body.password
     };
     m_user.createUser(user, (err) => {
-        res.status(200).json(err);
+        if (err) {
+            console.error(err);
+            res.status(500).json(err);
+        } else {
+            res.status(200).json({message: "User Created."});
+        }
     });
 });
 

@@ -14,17 +14,12 @@
     "cron": "^1.3.0",
     "debug": "~2.6.9",
     "express": "~4.16.2",
-    "express-session": "^1.15.6",
     "gulp": "^3.9.1",
     "gulp-minify": "^2.1.0",
     "isemail": "^3.1.1",
-    "jade": "~1.11.0",
     "less-middleware": "~2.2.1",
-    "localize": "^0.4.7",
     "morgan": "~1.9.0",
-    "nodemon": "^1.17.1",
     "pg": "~6.4.2",
-    "poloniex-api-node": "^1.8.1",
-    "serve-favicon": "~2.4.5"
+    "poloniex-api-node": "^1.8.1"
   }
 }

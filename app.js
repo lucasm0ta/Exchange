@@ -29,9 +29,13 @@ app.use((req, res, next) => {
 
 // Load Routes
 var users = require('./routes/users');
+var orders = require('./routes/orders');
+var quotes = require('./routes/quotes');
 
 // Routes
 app.use('/users', users);
+app.use('/orders', orders);
+app.use('/quotes', quotes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
